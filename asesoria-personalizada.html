@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asesoría personalizada | Geely Aguascalientes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12141c; --surface:#1b1e29; --surface-2:#232838;
+    --line:rgba(244,239,230,.14); --paper:#f4efe6;
+    --gold:#e8a33d; --sky:#3fa7a0; --muted:#a9a6ab;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:radial-gradient(1200px 600px at 15% -10%, #2a2417 0%, var(--ink) 55%);
+    color:var(--paper); font-family:'Manrope',system-ui,sans-serif;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:0 22px;}
+  header.top{padding:24px 0 0;}
+  .brand{font-family:'Fraunces',serif;font-weight:700;font-size:18px;}
+  .brand .g{color:var(--gold);}
+  .brand-sub{font-size:12px;color:var(--muted);margin-top:2px;}
+  main{padding:36px 0 40px;}
+  .kicker{color:var(--gold);font-size:13px;font-weight:700;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(30px,7vw,44px);line-height:1.08;margin:12px 0 16px;letter-spacing:-.5px;}
+  .lede{color:var(--muted);font-size:16.5px;line-height:1.6;margin:0 0 30px;max-width:44ch;}
+
+  .btn{
+    display:block;text-align:center;text-decoration:none;
+    background:var(--gold);color:#1a1206;border-radius:12px;
+    padding:17px 22px;font-size:16px;font-weight:800;
+  }
+
+  .steps{margin:36px 0;display:flex;flex-direction:column;gap:0;}
+  .step{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);}
+  .step:last-child{border-bottom:none;}
+  .step-num{font-family:'Fraunces',serif;font-weight:700;color:var(--sky);font-size:20px;min-width:28px;}
+  .step-title{font-weight:700;font-size:15.5px;margin-bottom:4px;}
+  .step-desc{font-size:14px;color:var(--muted);line-height:1.55;}
+
+  .why{
+    border:1px solid var(--line);border-radius:16px;padding:22px;margin:8px 0 34px;
+    background:var(--surface);
+  }
+  .why h2{font-family:'Fraunces',serif;font-size:19px;margin:0 0 14px;font-weight:600;}
+  .why ul{margin:0;padding-left:20px;color:var(--muted);font-size:14.5px;line-height:1.9;}
+
+  .quote{
+    font-family:'Fraunces',serif;font-style:italic;font-size:18px;line-height:1.5;
+    color:var(--paper);border-left:3px solid var(--gold);padding-left:18px;margin:34px 0;
+  }
+  .quote span{display:block;font-family:'Manrope',sans-serif;font-style:normal;font-size:13px;color:var(--muted);margin-top:10px;}
+
+  .alt{text-align:center;margin-top:22px;font-size:13.5px;color:var(--muted);}
+  .alt a{color:var(--sky);text-decoration:underline;}
+
+  footer{padding:24px 0 40px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);margin-top:20px;}
+
+  label.field{display:block;margin-bottom:14px;}
+  .field-label{font-size:13.5px;color:var(--muted);margin-bottom:6px;display:block;}
+  input[type=text], input[type=tel], select{
+    width:100%;padding:14px;border-radius:10px;border:1px solid var(--line);
+    background:var(--ink);color:var(--paper);font-size:15.5px;font-family:'Manrope',sans-serif;
+  }
+  .err{color:#e2685f;font-size:13px;margin-top:2px;margin-bottom:10px;display:none;}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="brand">Geely <span class="g">Aguascalientes</span></div>
+  <div class="brand-sub">Asesoría personalizada</div>
+</div></header>
+
+<main><div class="wrap">
+  <div class="kicker">📹 Para avanzar en serio</div>
+  <h1>Arma tu plan para comprar tu Geely, sin ir a la agencia.</h1>
+  <p class="lede">Una videollamada 1 a 1 con tu propio asesor en Aguascalientes: revisamos tu presupuesto, elegimos el modelo correcto y dejamos listo el papeleo de tu financiamiento.</p>
+
+  <a class="btn" href="#agendar">Agendar mi videollamada →</a>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div>
+        <div class="step-title">Platicamos por WhatsApp</div>
+        <div class="step-desc">Nos cuentas qué buscas, tu presupuesto y tus tiempos. Sin formularios largos.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div>
+        <div class="step-title">Videollamada con tu asesor</div>
+        <div class="step-desc">Comparamos modelos, versiones y opciones de financiamiento en vivo, con las cifras reales de tu caso.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div>
+        <div class="step-title">Armamos tu expediente</div>
+        <div class="step-desc">Te decimos exactamente qué documentos necesitas y precalificamos tu crédito antes de que pises la agencia.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div>
+        <div class="step-title">Entrega de tu Geely</div>
+        <div class="step-desc">Coordinamos fecha de entrega en Geely Aguascalientes con todo ya resuelto de antemano.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="why">
+    <h2>¿Por qué con un asesor y no solo, directo en agencia?</h2>
+    <ul>
+      <li>Comparas modelos y mensualidades sin presión de venta.</li>
+      <li>Un solo punto de contacto de principio a fin.</li>
+      <li>Te avisamos de promociones vigentes antes de que se agoten.</li>
+      <li>Podemos ayudarte aunque no estés en Aguascalientes capital.</li>
+    </ul>
+  </div>
+
+  <div class="quote">
+    “No sabía si me alcanzaba para un Starray o me convenía un Coolray. En una llamada me quedó claro el plan completo.”
+    <span>— Cliente Geely Aguascalientes</span>
+  </div>
+
+  <div id="agendar" class="why" style="margin-top:6px;">
+    <h2>Agenda tu videollamada</h2>
+    <label class="field">
+      <span class="field-label">👤 Nombre</span>
+      <input type="text" id="b-name" placeholder="Tu nombre">
+    </label>
+    <label class="field">
+      <span class="field-label">📱 WhatsApp</span>
+      <input type="tel" id="b-wa" maxlength="10" placeholder="449 123 4567">
+    </label>
+    <label class="field">
+      <span class="field-label">🕒 ¿Cuándo te acomoda mejor?</span>
+      <select id="b-horario">
+        <option value="">Selecciona un horario</option>
+        <option>Mañana (9am - 12pm)</option>
+        <option>Tarde (12pm - 5pm)</option>
+        <option>Noche (5pm - 8pm)</option>
+        <option>Fin de semana</option>
+      </select>
+    </label>
+    <span class="err" id="b-err">⚠️ Completa tu nombre, WhatsApp a 10 dígitos y horario</span>
+    <button class="btn" style="width:100%;border:none;cursor:pointer;margin-top:6px;" onclick="submitBooking()">Confirmar y abrir WhatsApp →</button>
+  </div>
+
+  <p class="alt">¿Prefieres algo más rápido? <a href="quiz.html">Haz el test de 2 minutos</a></p>
+</div></main>
+
+<footer><div class="wrap">Geely Aguascalientes · Distribuidor autorizado · Aguascalientes, Ags.</div></footer>
+
+<script>
+  const WHATSAPP_NUMBER = "524498928514";
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbzrJhnV6PTQh4ySKh0l119YvYkqBAigZitYkYOjPcK_ErnSahX-S6Er0GfE6RXEruus/exec";
+
+  function submitBooking(){
+    const name = document.getElementById("b-name").value.trim();
+    const wa = document.getElementById("b-wa").value.replace(/\D/g,"");
+    const horario = document.getElementById("b-horario").value;
+    if(!name || wa.length !== 10 || !horario){
+      document.getElementById("b-err").style.display = "block";
+      return;
+    }
+    document.getElementById("b-err").style.display = "none";
+
+    fetch(SHEET_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {"Content-Type": "text/plain"},
+      body: JSON.stringify({
+        tipo: "Asesoría personalizada",
+        nombre: name,
+        whatsapp: wa,
+        horario: horario
+      })
+    }).catch(()=>{});
+
+    const msg = encodeURIComponent(
+      `Hola, soy ${name}. Quiero agendar mi videollamada con un asesor de Geely Aguascalientes. Me acomoda: ${horario}.`
+    );
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Qué Geely puedes comprar HOY? | Geely Aguascalientes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12141c; --surface:#1b1e29; --surface-2:#232838;
+    --line:rgba(244,239,230,.14); --paper:#f4efe6;
+    --gold:#e8a33d; --sky:#3fa7a0; --muted:#a9a6ab; --bad:#e2685f;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:radial-gradient(1200px 600px at 15% -10%, #232a3d 0%, var(--ink) 55%);
+    color:var(--paper); font-family:'Manrope',system-ui,sans-serif;
+    min-height:100vh; display:flex; flex-direction:column;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:0 22px;width:100%;}
+  header.top{padding:22px 0 0;}
+  .brand{font-family:'Fraunces',serif;font-weight:700;font-size:18px;}
+  .brand .g{color:var(--gold);}
+  .brand-sub{font-size:12px;color:var(--muted);margin-top:2px;}
+  main{flex:1;padding:20px 0 40px;display:flex;flex-direction:column;justify-content:center;}
+  .screen{display:none;}
+  .screen.active{display:block;animation:fade .35s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+  /* Hero */
+  .hero-kicker{color:var(--sky);font-size:13px;font-weight:700;letter-spacing:.3px;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(30px,7vw,46px);line-height:1.05;margin:12px 0 14px;letter-spacing:-.5px;}
+  .lede{color:var(--muted);font-size:16px;line-height:1.6;margin:0 0 26px;}
+  .badges{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:32px;font-size:14px;color:var(--muted);}
+  .badges span{display:flex;align-items:center;gap:6px;}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;justify-content:center;
+    background:var(--gold);color:#1a1206;border:none;border-radius:12px;
+    padding:16px 22px;font-size:16px;font-weight:800;cursor:pointer;
+    width:100%;font-family:'Manrope',sans-serif;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn.secondary{background:transparent;color:var(--paper);border:1px solid var(--line);font-weight:700;}
+  .btn.small{padding:12px 16px;font-size:14px;width:auto;}
+
+  /* Progress */
+  .progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;color:var(--muted);}
+  .bar{height:6px;border-radius:6px;background:var(--surface-2);overflow:hidden;margin-bottom:28px;}
+  .bar-fill{height:100%;background:linear-gradient(90deg,var(--sky),var(--gold));width:0%;transition:width .3s ease;}
+
+  .q-title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(22px,5vw,28px);line-height:1.2;margin:0 0 22px;}
+  .options{display:flex;flex-direction:column;gap:10px;}
+  .opt{
+    border:1px solid var(--line);background:var(--surface);
+    border-radius:12px;padding:16px 18px;font-size:15.5px;font-weight:600;
+    cursor:pointer;text-align:left;color:var(--paper);font-family:'Manrope',sans-serif;
+  }
+  .opt:hover{border-color:var(--gold);}
+  .opt.selected{border-color:var(--gold);background:var(--surface-2);}
+
+  /* Form fields */
+  label.field{display:block;margin-bottom:16px;}
+  .field-label{font-size:13.5px;color:var(--muted);margin-bottom:6px;display:block;}
+  input[type=text], input[type=tel], select{
+    width:100%;padding:14px 14px;border-radius:10px;border:1px solid var(--line);
+    background:var(--surface);color:var(--paper);font-size:15.5px;font-family:'Manrope',sans-serif;
+  }
+  select{appearance:auto;}
+  .err{color:var(--bad);font-size:13px;margin-top:6px;display:none;}
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);margin:18px 0 20px;}
+  .consent a{color:var(--sky);}
+
+  /* Result */
+  .result-tag{color:var(--gold);font-size:13px;font-weight:700;letter-spacing:.3px;}
+  .result-card{
+    border:1px solid rgba(232,163,61,.4);border-radius:18px;padding:24px;
+    background:linear-gradient(160deg,#332816 0%, var(--surface) 70%);margin:16px 0 20px;
+  }
+  .result-model{font-family:'Fraunces',serif;font-weight:700;font-size:28px;margin:4px 0 8px;}
+  .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;}
+  .stat-label{font-size:12px;color:var(--muted);}
+  .stat-value{font-size:19px;font-weight:800;color:var(--paper);}
+  .fine{font-size:12px;color:var(--muted);margin-top:22px;line-height:1.6;}
+  .advisory-box{
+    border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;
+    background:var(--surface);
+  }
+  .advisory-box p{margin:0 0 14px;font-size:14.5px;color:var(--muted);line-height:1.55;}
+  .restart{display:block;text-align:center;margin-top:16px;font-size:13.5px;color:var(--muted);text-decoration:underline;cursor:pointer;background:none;border:none;font-family:'Manrope',sans-serif;}
+
+  footer{padding:18px 0 34px;color:var(--muted);font-size:12px;text-align:center;}
+
+  /* Privacy modal */
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:20;align-items:flex-end;justify-content:center;}
+  .modal-bg.open{display:flex;}
+  .modal{background:var(--surface);border-radius:16px 16px 0 0;max-width:640px;width:100%;max-height:80vh;overflow:auto;padding:26px;border:1px solid var(--line);border-bottom:none;}
+  .modal h2{font-family:'Fraunces',serif;font-size:20px;margin-top:0;}
+  .modal p{font-size:14px;color:var(--muted);line-height:1.6;}
+  @media(min-width:700px){.modal-bg{align-items:center;}.modal{border-radius:16px;border-bottom:1px solid var(--line);}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="brand">Geely <span class="g">Aguascalientes</span></div>
+  <div class="brand-sub">Test gratuito · 5 preguntas</div>
+</div></header>
+
+<main><div class="wrap">
+
+  <!-- SCREEN 0: hero -->
+  <section class="screen active" id="s-hero">
+    <div class="hero-kicker">Aguascalientes · 2026</div>
+    <h1>¿Qué Geely puedes comprar HOY?</h1>
+    <p class="lede">Descubre exactamente qué modelo calificas, cuánto pagarías al mes y cuál es tu enganche.</p>
+    <div class="badges">
+      <span>⚡ 60 segundos</span><span>🔒 100% gratuito</span><span>🚗 Resultado real</span>
+    </div>
+    <button class="btn" onclick="goTo('s-whatsapp')">Descubrir mi opción →</button>
+  </section>
+
+  <!-- SCREEN 1: whatsapp capture -->
+  <section class="screen" id="s-whatsapp">
+    <div class="hero-kicker">Antes de seguir…</div>
+    <h1 style="font-size:clamp(24px,6vw,32px);">📶 ¿Cuál es tu WhatsApp?</h1>
+    <p class="lede">Por si se corta tu conexión a media pregunta — así no pierdes tu avance y seguimos justo donde te quedaste.</p>
+    <label class="field">
+      <span class="field-label">📱 Número a 10 dígitos</span>
+      <input type="tel" id="wa-early" maxlength="10" placeholder="449 123 4567">
+      <span class="err" id="err-wa-early">⚠️ Escribe un número a 10 dígitos</span>
+    </label>
+    <button class="btn" onclick="submitEarlyWhatsapp()">Continuar →</button>
+  </section>
+
+  <!-- SCREEN 2: questions -->
+  <section class="screen" id="s-question">
+    <div class="progress-row"><span id="q-count">Pregunta 1 de 5</span><span id="q-pct">20%</span></div>
+    <div class="bar"><div class="bar-fill" id="bar-fill"></div></div>
+    <div class="q-title" id="q-title"></div>
+    <div class="options" id="q-options"></div>
+  </section>
+
+  <!-- SCREEN 3: lead form -->
+  <section class="screen" id="s-lead">
+    <div class="hero-kicker">🎉 ¡Ya casi!</div>
+    <h1 style="font-size:clamp(26px,6vw,36px);">¿A dónde enviamos tu resultado?</h1>
+    <p class="lede">Déjanos tus datos para mandarte tu perfil personalizado con el modelo, enganche y mensualidad exacta que te corresponde.</p>
+
+    <label class="field">
+      <span class="field-label">👤 Nombre</span>
+      <input type="text" id="lead-name" placeholder="Tu nombre">
+    </label>
+    <label class="field">
+      <span class="field-label">📱 WhatsApp</span>
+      <input type="tel" id="lead-wa" maxlength="10" placeholder="449 123 4567">
+    </label>
+    <label class="field">
+      <span class="field-label">📍 ¿De qué estado eres?</span>
+      <select id="lead-estado">
+        <option value="">Selecciona tu estado</option>
+        <option selected>Aguascalientes</option>
+        <option>Zacatecas</option>
+        <option>Jalisco</option>
+        <option>San Luis Potosí</option>
+        <option>Guanajuato</option>
+        <option>Ciudad de México</option>
+        <option>Estado de México</option>
+        <option>Nuevo León</option>
+        <option>Otro</option>
+      </select>
+    </label>
+    <span class="err" id="err-lead">⚠️ Por favor completa todos los campos correctamente</span>
+
+    <div class="consent">
+      <input type="checkbox" id="lead-consent" style="margin-top:3px;">
+      <span>Acepto que mis datos sean usados para recibir información sobre productos y promociones Geely. <a href="#" onclick="openPrivacy(event)">Ver aviso de privacidad</a></span>
+    </div>
+    <button class="btn" onclick="submitLead()">Ver mi resultado →</button>
+    <p class="fine" style="text-align:center;">Solo usamos tus datos para enviarte tu resultado. Sin spam. Sin llamadas no deseadas.</p>
+  </section>
+
+  <!-- SCREEN 4: result -->
+  <section class="screen" id="s-result">
+    <div class="result-tag">Tu mejor opción</div>
+    <div class="result-card">
+      <div style="font-size:13px;color:var(--muted);" id="result-tagline">Según tus respuestas</div>
+      <div class="result-model" id="result-name">—</div>
+      <div class="result-grid">
+        <div><div class="stat-label">Precio de lista desde</div><div class="stat-value" id="result-price">—</div></div>
+        <div><div class="stat-label">Mensualidad estimada</div><div class="stat-value" id="result-monthly">—</div></div>
+        <div><div class="stat-label">Enganche sugerido</div><div class="stat-value" id="result-down">—</div></div>
+        <div><div class="stat-label">Plazo</div><div class="stat-value">60 meses</div></div>
+      </div>
+    </div>
+
+    <div class="advisory-box">
+      <p>📹 ¿Te interesa un plan personalizado, paso a paso, para ayudarte a comprar tu Geely con nosotros — sin tener que venir a la agencia?</p>
+      <a class="btn secondary" id="wa-cta" href="#" target="_blank" style="display:block;text-align:center;text-decoration:none;">Quiero hablar con un asesor</a>
+    </div>
+
+    <p class="fine">
+      Mensualidades estimadas a 60 meses. Sujeto a aprobación crediticia y a la promoción vigente en agencia.<br>
+      Geely Aguascalientes · Precios de lista 2026.
+      <br><a href="https://www.google.com/maps/search/Geely+Aguascalientes" target="_blank" style="color:var(--sky);">📍 Ver Geely Aguascalientes en el mapa</a>
+    </p>
+    <button class="restart" onclick="restartQuiz()">Volver a hacer el test</button>
+  </section>
+
+</div></main>
+
+<footer>Geely Aguascalientes · Distribuidor autorizado · Aguascalientes, Ags.</footer>
+
+<!-- Privacy modal -->
+<div class="modal-bg" id="privacy-modal">
+  <div class="modal">
+    <h2>Aviso de Privacidad</h2>
+    <p><strong>Responsable:</strong> Geely Aguascalientes, distribuidor autorizado Geely en Aguascalientes, México.</p>
+    <p><strong>Datos que recopilamos:</strong> Nombre, número de WhatsApp y las respuestas que proporcionas en este cuestionario (uso del vehículo, número de personas, enganche disponible y mensualidad estimada).</p>
+    <p><strong>Finalidad:</strong> Contactarte para brindarte información personalizada sobre vehículos Geely, promociones vigentes, opciones de financiamiento y agendar una cita o test drive. Tus datos no serán vendidos ni compartidos con terceros ajenos a Geely.</p>
+    <p><strong>Almacenamiento:</strong> Tu información se guarda de forma segura y únicamente es accesible por el asesor responsable de tu caso.</p>
+    <p><strong>Derechos ARCO:</strong> Puedes solicitar acceso, rectificación, cancelación u oposición al uso de tus datos en cualquier momento escribiéndonos por WhatsApp al número de contacto de la agencia.</p>
+    <button class="btn" onclick="closePrivacy()">Entendido, acepto ✓</button>
+  </div>
+</div>
+
+<script>
+  const WHATSAPP_NUMBER = "524498928514"; // 52 + 449 892 8514
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbzrJhnV6PTQh4ySKh0l119YvYkqBAigZitYkYOjPcK_ErnSahX-S6Er0GfE6RXEruus/exec";
+
+  function sendToSheet(best){
+    fetch(SHEET_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {"Content-Type": "text/plain"},
+      body: JSON.stringify({
+        tipo: "Test",
+        nombre: answers.name,
+        whatsapp: answers.whatsapp,
+        estado: answers.estado,
+        uso: answers.uso,
+        personas: answers.personas,
+        modelo: best.name
+      })
+    }).catch(()=>{ /* si falla el envío a la hoja, no interrumpe la experiencia del usuario */ });
+  }
+
+  const MODELS = [
+    {name:"Emgrand", price:299990, monthly:6900, down:60000, uso:["ciudad","trabajo"], tags:["precio"], seats:5},
+    {name:"GX3 Pro", price:329990, monthly:7500, down:66000, uso:["ciudad","trabajo"], tags:["precio","tech"], seats:5},
+    {name:"Coolray Lite", price:329900, monthly:7500, down:66000, uso:["ciudad","trabajo"], tags:["precio"], seats:5},
+    {name:"Coolray Plus", price:399990, monthly:9100, down:80000, uso:["ciudad","familia"], tags:["tech"], seats:5},
+    {name:"EX2", price:374900, monthly:8500, down:75000, uso:["tech","ciudad"], tags:["eco","tech"], seats:5},
+    {name:"Cityray", price:548990, monthly:12500, down:110000, uso:["familia","trabajo"], tags:["espacio"], seats:5},
+    {name:"Starray", price:559990, monthly:12700, down:112000, uso:["familia"], tags:["espacio","tech"], seats:5},
+    {name:"EX5 EM-i", price:599990, monthly:13600, down:120000, uso:["tech","familia"], tags:["eco","tech"], seats:5},
+    {name:"Monjaro", price:689990, monthly:15600, down:138000, uso:["familia"], tags:["espacio","tech"], seats:7},
+  ];
+
+  const QUESTIONS = [
+    {id:"uso", title:"¿Para qué vas a usar tu Geely, principalmente?",
+      options:[
+        {label:"Ciudad, día a día", value:"ciudad"},
+        {label:"Familia y viajes largos", value:"familia"},
+        {label:"Trabajo y trayectos largos", value:"trabajo"},
+        {label:"Tecnología, diseño y ahorro", value:"tech"},
+      ]},
+    {id:"personas", title:"¿Cuántas personas viajan contigo normalmente?",
+      options:[
+        {label:"Solo yo", value:1},
+        {label:"2 a 3 personas", value:3},
+        {label:"4 a 5 personas", value:5},
+        {label:"Más de 5 (familia grande)", value:7},
+      ]},
+    {id:"enganche", title:"¿Cuánto tienes disponible para el enganche?",
+      options:[
+        {label:"Menos de $30,000", value:15000},
+        {label:"Entre $30,000 y $60,000", value:45000},
+        {label:"Entre $60,000 y $100,000", value:80000},
+        {label:"Más de $100,000", value:130000},
+      ]},
+    {id:"mensualidad", title:"¿Cuánto podrías pagar al mes cómodamente?",
+      options:[
+        {label:"Menos de $6,000", value:5000},
+        {label:"Entre $6,000 y $8,500", value:7250},
+        {label:"Entre $8,500 y $11,500", value:10000},
+        {label:"Más de $11,500", value:13500},
+      ]},
+    {id:"prioridad", title:"¿Qué es lo más importante para ti?",
+      options:[
+        {label:"El precio más bajo posible", value:"precio"},
+        {label:"Tecnología y diseño", value:"tech"},
+        {label:"Espacio y comodidad", value:"espacio"},
+        {label:"Ahorro de gasolina (híbrido)", value:"eco"},
+      ]},
+  ];
+
+  let answers = {};
+  let qIndex = 0;
+
+  function goTo(id){
+    document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  function submitEarlyWhatsapp(){
+    const val = document.getElementById("wa-early").value.replace(/\D/g,"");
+    if(val.length !== 10){
+      document.getElementById("err-wa-early").style.display = "block";
+      return;
+    }
+    document.getElementById("err-wa-early").style.display = "none";
+    answers._earlyWhatsapp = val;
+    document.getElementById("lead-wa").value = val;
+    qIndex = 0;
+    renderQuestion();
+    goTo("s-question");
+  }
+
+  function renderQuestion(){
+    const q = QUESTIONS[qIndex];
+    document.getElementById("q-count").textContent = `Pregunta ${qIndex+1} de ${QUESTIONS.length}`;
+    document.getElementById("q-pct").textContent = Math.round(((qIndex)/QUESTIONS.length)*100) + "%";
+    document.getElementById("bar-fill").style.width = ((qIndex)/QUESTIONS.length*100) + "%";
+    document.getElementById("q-title").textContent = q.title;
+    const opts = document.getElementById("q-options");
+    opts.innerHTML = "";
+    q.options.forEach(o=>{
+      const btn = document.createElement("button");
+      btn.className = "opt";
+      btn.type = "button";
+      btn.textContent = o.label;
+      btn.onclick = ()=>selectOption(q.id, o.value);
+      opts.appendChild(btn);
+    });
+  }
+
+  function selectOption(id, value){
+    answers[id] = value;
+    if(qIndex < QUESTIONS.length - 1){
+      qIndex++;
+      renderQuestion();
+    } else {
+      document.getElementById("bar-fill").style.width = "100%";
+      goTo("s-lead");
+    }
+  }
+
+  function submitLead(){
+    const name = document.getElementById("lead-name").value.trim();
+    const wa = document.getElementById("lead-wa").value.replace(/\D/g,"");
+    const estado = document.getElementById("lead-estado").value;
+    const consent = document.getElementById("lead-consent").checked;
+    if(!name || wa.length !== 10 || !estado || !consent){
+      document.getElementById("err-lead").style.display = "block";
+      return;
+    }
+    document.getElementById("err-lead").style.display = "none";
+    answers.name = name; answers.whatsapp = wa; answers.estado = estado;
+    showResult();
+  }
+
+  function scoreModel(m){
+    let s = 0;
+    if(m.uso.includes(answers.uso)) s += 3;
+    if(m.tags.includes(answers.prioridad)) s += 2;
+    if(answers.personas >= 6 && m.seats >= 7) s += 3;
+    if(answers.personas <= 3 && m.seats <= 5) s += 0.5;
+    const budgetDiff = Math.abs(m.monthly - answers.mensualidad) / 1000;
+    s -= budgetDiff * 0.6;
+    const downDiff = Math.abs(m.down - answers.enganche) / 20000;
+    s -= downDiff * 0.3;
+    return s;
+  }
+
+  function showResult(){
+    const ranked = MODELS.map(m=>({...m, score:scoreModel(m)})).sort((a,b)=>b.score-a.score);
+    const best = ranked[0];
+    document.getElementById("result-name").textContent = "Geely " + best.name;
+    document.getElementById("result-price").textContent = "$" + best.price.toLocaleString("es-MX");
+    document.getElementById("result-monthly").textContent = "$" + best.monthly.toLocaleString("es-MX") + "/mes";
+    document.getElementById("result-down").textContent = "$" + best.down.toLocaleString("es-MX");
+    document.getElementById("result-tagline").textContent = `Hola ${answers.name}, según tus respuestas`;
+
+    sendToSheet(best);
+
+    const msg = encodeURIComponent(
+      `Hola, hice el test de Geely Aguascalientes. Me salió el ${best.name} y quiero más info. Mi nombre es ${answers.name}.`
+    );
+    document.getElementById("wa-cta").href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+
+    goTo("s-result");
+  }
+
+  function restartQuiz(){
+    answers = {}; qIndex = 0;
+    document.getElementById("wa-early").value = "";
+    document.getElementById("lead-name").value = "";
+    document.getElementById("lead-wa").value = "";
+    document.getElementById("lead-consent").checked = false;
+    goTo("s-hero");
+  }
+
+  function openPrivacy(e){ e.preventDefault(); document.getElementById("privacy-modal").classList.add("open"); }
+  function closePrivacy(){ document.getElementById("privacy-modal").classList.remove("open"); }
+</script>
+</body>
+</html>

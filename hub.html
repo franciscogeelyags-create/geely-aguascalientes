@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geely Aguascalientes · Elige tu camino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12141c;
+    --surface:#1b1e29;
+    --surface-2:#232838;
+    --line:rgba(244,239,230,.12);
+    --paper:#f4efe6;
+    --gold:#e8a33d;
+    --gold-dim:#8a6a34;
+    --sky:#3fa7a0;
+    --muted:#a9a6ab;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:radial-gradient(1200px 600px at 15% -10%, #232a3d 0%, var(--ink) 55%);
+    color:var(--paper);
+    font-family:'Manrope',system-ui,sans-serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;width:100%;}
+  header.top{padding:28px 0 0;}
+  .brand{display:flex;align-items:baseline;gap:10px;}
+  .brand-mark{
+    font-family:'Fraunces',serif;font-weight:700;font-size:20px;letter-spacing:.2px;
+  }
+  .brand-mark .g{color:var(--gold);}
+  .brand-sub{font-size:13px;color:var(--muted);}
+  main{flex:1;padding:56px 0 40px;}
+  .kicker{color:var(--sky);font-size:14px;font-weight:600;}
+  h1{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(32px,6vw,52px);
+    line-height:1.05;
+    margin:10px 0 16px;
+    letter-spacing:-.5px;
+  }
+  .lede{color:var(--muted);font-size:17px;line-height:1.6;max-width:46ch;margin:0 0 40px;}
+  .paths{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media (max-width:720px){.paths{grid-template-columns:1fr;}}
+  a.path{
+    text-decoration:none;color:inherit;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px 26px;
+    display:flex;flex-direction:column;
+    min-height:230px;
+    position:relative;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  a.path:hover{transform:translateY(-3px);}
+  .path.a{
+    background:linear-gradient(160deg,#26304a 0%, var(--surface) 65%);
+    border-color:rgba(63,167,160,.35);
+  }
+  .path.a:hover{border-color:var(--sky);}
+  .path.b{
+    background:linear-gradient(160deg,#332816 0%, var(--surface) 65%);
+    border-color:rgba(232,163,61,.35);
+  }
+  .path.b:hover{border-color:var(--gold);}
+  .path-time{font-size:12px;color:var(--muted);letter-spacing:.3px;}
+  .path-title{
+    font-family:'Fraunces',serif;font-weight:600;font-size:24px;margin:10px 0 10px;line-height:1.15;
+  }
+  .path-desc{color:var(--muted);font-size:15px;line-height:1.55;flex:1;}
+  .path-cta{
+    margin-top:18px;font-weight:700;font-size:15px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .path.a .path-cta{color:var(--sky);}
+  .path.b .path-cta{color:var(--gold);}
+  footer{padding:24px 0 40px;color:var(--muted);font-size:13px;}
+  footer .wrap{border-top:1px solid var(--line);padding-top:20px;}
+</style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="brand">
+        <span class="brand-mark">Geely <span class="g">Aguascalientes</span></span>
+      </div>
+      <div class="brand-sub">Distribuidor Geely · Aguascalientes</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="kicker">Antes de empezar</div>
+      <h1>¿Cómo prefieres avanzar hoy?</h1>
+      <p class="lede">Elige el camino que mejor se ajuste a ti — los dos son gratuitos y sin compromiso.</p>
+
+      <div class="paths">
+        <a class="path a" href="quiz.html">
+          <span class="path-time">⏱ 2 minutos · resultado al instante</span>
+          <span class="path-title">¿Qué Geely me conviene?</span>
+          <span class="path-desc">Responde 5 preguntas rápidas sobre tu uso, tu familia y tu presupuesto, y descubre qué modelo y plan de pago se ajustan a tu situación.</span>
+          <span class="path-cta">Hacer el test →</span>
+        </a>
+
+        <a class="path b" href="asesoria-personalizada.html">
+          <span class="path-time">👤 Asesor dedicado · plan paso a paso</span>
+          <span class="path-title">Asesoría personalizada</span>
+          <span class="path-desc">Una videollamada 1 a 1 con tu propio asesor en Aguascalientes — arma tu plan para comprar tu auto sin ir a la agencia.</span>
+          <span class="path-cta">Conocer la asesoría →</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">Geely Aguascalientes · Distribuidor autorizado · Aguascalientes, Ags.</div>
+  </footer>
+</body>
+</html>
