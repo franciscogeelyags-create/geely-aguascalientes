@@ -106,7 +106,7 @@
 <body>
 <header class="top"><div class="wrap">
   <div class="brand">Geely <span class="g">Aguascalientes</span></div>
-  <div class="brand-sub">Test gratuito · 5 preguntas</div>
+  <div class="brand-sub">Test gratuito · 7 preguntas</div>
 </div></header>
 
 <main><div class="wrap">
@@ -242,7 +242,9 @@
         estado: answers.estado,
         uso: answers.uso,
         personas: answers.personas,
-        modelo: best.name
+        modelo: best.name,
+        tiempo: answers.tiempo,
+        forma_pago: answers.forma_pago
       })
     }).catch(()=>{ /* si falla el envío a la hoja, no interrumpe la experiencia del usuario */ });
   }
@@ -294,6 +296,18 @@
         {label:"Tecnología y diseño", value:"tech"},
         {label:"Espacio y comodidad", value:"espacio"},
         {label:"Ahorro de gasolina (híbrido)", value:"eco"},
+      ]},
+    {id:"tiempo", title:"¿Cuándo te gustaría estar estrenando tu Geely?",
+      options:[
+        {label:"Este mes", value:"Este mes"},
+        {label:"1 a 3 meses", value:"1 a 3 meses"},
+        {label:"3 a 6 meses", value:"3 a 6 meses"},
+      ]},
+    {id:"forma_pago", title:"¿Cómo te gustaría adquirirlo?",
+      options:[
+        {label:"A crédito", value:"Crédito"},
+        {label:"De contado", value:"Contado"},
+        {label:"Aún no decido", value:"Aún no decido"},
       ]},
   ];
 
@@ -388,7 +402,7 @@
     sendToSheet(best);
 
     const msg = encodeURIComponent(
-      `Hola, hice el test de Geely Aguascalientes. Me salió el ${best.name} y quiero más info. Mi nombre es ${answers.name}.`
+      `Hola, hice el test de Geely Aguascalientes. Me salió el ${best.name} y quiero más info. Mi nombre es ${answers.name}. Me gustaría estrenar: ${answers.tiempo}. Forma de pago: ${answers.forma_pago}.`
     );
     document.getElementById("wa-cta").href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
 
