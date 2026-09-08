@@ -139,16 +139,14 @@
       <input type="tel" id="b-wa" maxlength="10" placeholder="449 123 4567">
     </label>
     <label class="field">
-      <span class="field-label">🕒 ¿Cuándo te acomoda mejor?</span>
-      <select id="b-horario">
-        <option value="">Selecciona un horario</option>
-        <option>Mañana (9am - 12pm)</option>
-        <option>Tarde (12pm - 5pm)</option>
-        <option>Noche (5pm - 8pm)</option>
-        <option>Fin de semana</option>
-      </select>
+      <span class="field-label">📅 ¿Qué día te gustaría tu videollamada?</span>
+      <input type="date" id="b-fecha">
     </label>
-    <span class="err" id="b-err">⚠️ Completa tu nombre, WhatsApp a 10 dígitos y horario</span>
+    <label class="field">
+      <span class="field-label">🕒 ¿A qué hora?</span>
+      <input type="time" id="b-hora">
+    </label>
+    <span class="err" id="b-err">⚠️ Completa tu nombre, WhatsApp a 10 dígitos, fecha y hora</span>
     <button class="btn" style="width:100%;border:none;cursor:pointer;margin-top:6px;" onclick="submitBooking()">Confirmar y abrir WhatsApp →</button>
   </div>
 
@@ -161,15 +159,21 @@
   const WHATSAPP_NUMBER = "524498928514";
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbzrJhnV6PTQh4ySKh0l119YvYkqBAigZitYkYOjPcK_ErnSahX-S6Er0GfE6RXEruus/exec";
 
+  document.getElementById("b-fecha").min = new Date().toISOString().split("T")[0];
+
   function submitBooking(){
     const name = document.getElementById("b-name").value.trim();
     const wa = document.getElementById("b-wa").value.replace(/\D/g,"");
-    const horario = document.getElementById("b-horario").value;
-    if(!name || wa.length !== 10 || !horario){
+    const fecha = document.getElementById("b-fecha").value;
+    const hora = document.getElementById("b-hora").value;
+    if(!name || wa.length !== 10 || !fecha || !hora){
       document.getElementById("b-err").style.display = "block";
       return;
     }
     document.getElementById("b-err").style.display = "none";
+
+    const fechaFormato = new Date(fecha + "T00:00:00").toLocaleDateString("es-MX", {weekday:"long", day:"numeric", month:"long"});
+    const horaFormato = new Date("2000-01-01T" + hora).toLocaleTimeString("es-MX", {hour:"numeric", minute:"2-digit"});
 
     fetch(SHEET_URL, {
       method: "POST",
@@ -179,12 +183,15 @@
         tipo: "Asesoría personalizada",
         nombre: name,
         whatsapp: wa,
-        horario: horario
+        fecha: fecha,
+        hora: hora,
+        fecha_legible: fechaFormato,
+        hora_legible: horaFormato
       })
     }).catch(()=>{});
 
     const msg = encodeURIComponent(
-      `Hola, soy ${name}. Quiero agendar mi videollamada con un asesor de Geely Aguascalientes. Me acomoda: ${horario}.`
+      `Hola, soy ${name}. Quiero agendar mi videollamada con un asesor de Geely Aguascalientes para el ${fechaFormato} a las ${horaFormato}.`
     );
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
   }
